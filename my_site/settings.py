@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR/'uploads'
 MEDIA_URL = '/files/'
+
+AWS_STORAGE_BUCKET_NAME = getenv('BUCKET')
+AWS_S3_REGION_NAME = getenv('REGION')
+AWS_ACCESS_KEY_ID = getenv('ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = getenv('SECRET')
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+STATICFILES_FOLDER = 'static'
+MEDIAFILES_FOLDER = 'media'
+
+STATICFILES_STORAGE = getenv('S_STORAGE')
+DEFAULT_FILE_STORAGE = getenv('DF_STORAGE')
